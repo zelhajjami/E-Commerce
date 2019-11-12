@@ -1,0 +1,37 @@
+# OS Files #
+.DS_Store
+ 
+*.class
+ 
+# Package Files #
+*.jar
+*.war
+*.ear
+*.db
+rebel.xml
+
+######################
+# Windows
+######################
+ 
+# Windows image file caches
+Thumbs.db 
+ 
+# Folder config file
+Desktop.ini
+
+######################
+# Eclipse
+######################
+
+*.pydevproject
+.project
+.metadata
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
