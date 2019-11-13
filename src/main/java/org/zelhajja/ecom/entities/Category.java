@@ -3,18 +3,37 @@ package org.zelhajja.ecom.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
 public class Category implements Serializable{
-	private Long inCategory;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idCategory;
+	@NotEmpty
+	@Size(min=4,max=20)
 	private String catName;
+	@Size(min=8)
 	private String description;
+	@Lob //
 	private byte[] photo;
 	private String photoName;
+	@OneToMany(mappedBy = "category")
 	private Collection<Product> products;
 	public Long getInCategory() {
-		return inCategory;
+		return idCategory;
 	}
 	public void setInCategory(Long inCategory) {
-		this.inCategory = inCategory;
+		this.idCategory = inCategory;
 	}
 	public String getCatName() {
 		return catName;

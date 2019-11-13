@@ -2,15 +2,36 @@ package org.zelhajja.ecom.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name = "products")
 public class Product implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProduct;
+	@NotEmpty
+	@Size(min=4, max=15)
 	private String appellation;
 	private String description;
 	private double price;
 	private boolean selected;
 	private String photo;
 	private int quantity;
+	@ManyToOne
+	// if we didn't specify the name, a default one will be given 
+	@JoinColumn(name = "idCategory") //it can be named differently than primary key
 	private Category category;
+	
 	public Long getIdProduct() {
 		return idProduct;
 	}

@@ -2,12 +2,27 @@ package org.zelhajja.ecom.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class OrderLine implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "idProduct")
 	private Product product;
 	private int quantity;
 	private double price;
-	private Order order;
+	@ManyToOne
+	@JoinColumn(name = "idOrder")
+	private CustomerOrder order;
+	
 	public Long getId() {
 		return id;
 	}
@@ -32,10 +47,10 @@ public class OrderLine implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Order getOrder() {
+	public CustomerOrder getOrder() {
 		return order;
 	}
-	public void setOrder(Order order) {
+	public void setOrder(CustomerOrder order) {
 		this.order = order;
 	}
 	public OrderLine() {
